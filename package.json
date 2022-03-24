@@ -1,8 +1,10 @@
 {
   "name": "cdk-to-dynamodb-local",
   "description": "For DynamoDBLocal, Generate create-table json from aws cdk",
+  "author": "ErgoFriend",
   "version": "0.1.0",
-  "main": "dist/index.js",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "bugs": {
     "url": "https://github.com/ErgoFriend/cdk-to-dynamodb-local/issues"
   },
@@ -20,7 +22,13 @@
   ],
   "packageManager": "npm@8.4.0",
   "license": "MIT",
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "build": "node scripts/build"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "estrella": "^1.4.1",
+    "npm-dts": "^1.3.11",
+    "typescript": "^4.6.2"
+  }
 }
