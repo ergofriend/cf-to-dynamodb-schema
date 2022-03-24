@@ -1,8 +1,3 @@
-const maxInterval = 14
+export const maxInterval = 14
 
-const getArrayLength = (arr: []) => arr.length
-
-module.exports = {
-  getArrayLength,
-  maxInterval,
-}
+export const getArrayLength = (arr: []) => arr.length

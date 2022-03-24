@@ -1,0 +1,49 @@
+{
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "username",
+            "AttributeType": "S"
+        }
+    ],
+    "KeySchema": [
+        {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+        }
+    ],
+    "LocalSecondaryIndexes": [
+        {
+            "IndexName": "usernameIndex",
+            "KeySchema": [
+                {
+                    "AttributeName": "pk",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "username",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            }
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    },
+    "TableName": "profile-app-table"
+}
