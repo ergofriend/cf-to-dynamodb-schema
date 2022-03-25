@@ -49,7 +49,7 @@
           "ReadCapacityUnits": 5,
           "WriteCapacityUnits": 5
         },
-        "TableName": "profile-app-table"
+        "TableName": "test8E554126"
       },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
