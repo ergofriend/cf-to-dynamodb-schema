@@ -3,17 +3,17 @@ import {Command} from 'commander'
 const program = new Command()
 
 program
-  .name('string-util')
-  .description('CLI to some JavaScript string utilities')
-  .version('0.8.0')
+  .name('gen-dynamo-schema-from-cdk')
+  .description('CLI to generate create-table json from aws cdk')
+  .version('0.0.0')
 
 program
-  .command('split')
+  .command('create-table')
   .description(
-    'Split a string into substrings and display as an array'
+    'Run aws dynamodb create-table from cdk.out.file'
   )
-  .argument('<string>', 'string to split')
-  .option('--first', 'display just the first substring')
+  .argument('<string>', 'template.json path')
+  .option('-f, --fiel', 'display just the first substring')
   .option('-s, --separator <char>', 'separator character', ',')
   .action((str, options) => {
     const limit = options.first ? 1 : undefined

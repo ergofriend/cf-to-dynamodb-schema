@@ -1,3 +1,3 @@
-export const maxInterval = 14
-
-export const getArrayLength = (arr: []) => arr.length
+export const parseTemplate = (template: any) => {
+  return template["Resources"]["test8E554126"]["Properties"]
+}

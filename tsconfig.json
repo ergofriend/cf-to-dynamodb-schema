@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "es2021",
     "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "noUncheckedIndexedAccess": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
