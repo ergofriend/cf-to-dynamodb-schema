@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import {build} from 'estrella'
 import {Generator} from 'npm-dts'
 
