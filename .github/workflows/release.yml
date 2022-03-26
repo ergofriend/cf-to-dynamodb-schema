@@ -30,7 +30,6 @@ jobs:
           node-version: 16
           cache: "npm"
       - name: install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       # run scripts
       - name: run build
