@@ -1,6 +1,38 @@
 # cdk-to-dynamodb-schema
 
-Helper for exec `aws dynamodb create-table` from cdk.out.template.file
+This script usage is more adapted for `dynamodb-local` than for `localstack`
+
+Helper for exec `aws dynamodb create-table` from cdk.out.template.file !
+
+From like this...
+
+```json
+{
+  "Resources": {
+    "<table-name>": {...},
+    "CDKMetadata": {...}
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {...}
+  },
+  "Parameters": {
+    "BootstrapVersion": {...}
+  },
+  "Rules": {...}
+}
+```
+
+To like this !!!
+
+```json
+{
+    "AttributeDefinitions": [...],
+    "KeySchema": [...],
+    "LocalSecondaryIndexes": [...],
+    "ProvisionedThroughput": {...},
+    "TableName": "..."
+}
+```
 
 ## install
 
