@@ -1,0 +1,6 @@
+{
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.ts?$": "esbuild-jest"
+  }
+}

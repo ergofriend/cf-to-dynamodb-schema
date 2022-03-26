@@ -1,7 +1,7 @@
-import {parseTemplate} from '../main'
+import {parseTemplate} from './main'
 
-import testTemplate from './templates/test.template.json'
-import teatSchema from './schema/test.json'
+import testTemplate from './test-data/templates/test.template.json'
+import teatSchema from './test-data/schema/test.json'
 
 test('parseTemplate', () => {
   const template = JSON.stringify(testTemplate)

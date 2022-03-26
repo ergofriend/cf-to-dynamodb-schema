@@ -1,4 +1,5 @@
 import {Command} from 'commander'
+
 import {readFileSync, writeFileSync} from 'fs'
 import {createTable, parseTemplate} from './main'
 
