@@ -2,7 +2,7 @@ import {execSync} from 'child_process'
 import {randomUUID} from 'crypto'
 import {unlinkSync, writeFileSync} from 'fs'
 
-import { error, parse } from './util'
+import {error, parse} from './util'
 
 export const parseTemplate = (data: string): string => {
   const template = parse(data)
@@ -18,12 +18,21 @@ export const parseTemplate = (data: string): string => {
   return JSON.stringify(properties, null, 2)
 }
 
-export const createTable = (schema: string) => {
+export const createTable = (
+  schema: string,
+  profile?: string,
+  endpoint?: string
+) => {
   const tmpFilePath = `tmp.schema.${randomUUID()}.json`
   writeFileSync(tmpFilePath, schema)
   try {
+    const target = profile
+      ? `--profile ${profile}`
+      : endpoint
+      ? `--endpoint-url ${endpoint}`
+      : ''
     execSync(
-      `aws dynamodb create-table --cli-input-json file://${tmpFilePath}`
+      `aws dynamodb create-table --cli-input-json file://${tmpFilePath} ${target}`
     )
   } catch {
     unlinkSync(tmpFilePath)

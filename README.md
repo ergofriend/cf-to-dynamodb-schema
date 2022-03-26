@@ -2,6 +2,14 @@
 
 This script usage is more adapted for `dynamodb-local` than for `localstack`
 
+## Install
+
+```
+npm i -D cdk-to-dynamodb-schema
+```
+
+## Description
+
 Helper for exec `aws dynamodb create-table` from cdk.out.template.file !
 
 From like this...
@@ -34,13 +42,9 @@ To like this !!!
 }
 ```
 
-## install
-
-```
-npm i -D cdk-to-dynamodb-schema
-```
-
 ## How to use
+
+`<path>` is `./cdk.out/<table-name>.template.json`
 
 ### Before use
 
@@ -53,17 +57,18 @@ cdk synth
 ### Run create-table from `./cdk.out/<table-name>.template.json`
 
 ```
-cdk-to-dynamodb-schema create-table ./cdk.out/<table-name>.template.json
+cdk-to-dynamodb-schema create-table <path> -e http://localhost:8000
+cdk-to-dynamodb-schema create-table <path> -p localstack
 ```
 
 ### Get equal schema json to create-table json for aws dynamodb command
 
 ```
-cdk-to-dynamodb-schema parse-template ./cdk.out/<table-name>.template.json
+cdk-to-dynamodb-schema parse-template <path>
 ```
 
 #### Export a json
 
 ```
-cdk-to-dynamodb-schema parse-template ./cdk.out/<table-name>.template.json -o a.json
+cdk-to-dynamodb-schema parse-template <path> -o generated.json
 ```
