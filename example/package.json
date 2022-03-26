@@ -1,0 +1,19 @@
+{
+  "name": "cdk-to-dynamodb-schema-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "synth": "cdk synth",
+    "aa": "node cdk-to-dynamodb-schema",
+    "export": "cdk-to-dynamodb-schema parse-template ./cdk.out/SampleStack.template.json -o generated/sample.schema.json",
+    "init:db": "cdk-to-dynamodb-schema create-table ./cdk.out/SampleStack.template.json"
+  },
+  "author": "ErgoFriend",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-cdk": "^2.17.0",
+    "aws-cdk-lib": "^2.17.0",
+    "cdk-to-dynamodb-schema": "^0.1.3",
+    "ts-node": "^10.7.0"
+  }
+}
