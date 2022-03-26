@@ -1,0 +1,34 @@
+name: release
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+      - name: Set releaser settings
+        run: |
+          git config --global user.name release-bot
+          git config --global user.email release-bot@github.action
+      - name: Set .npmrc
+        run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+      - name: Major release
+        id: major
+        run: release-it major --ci
+        if: contains(toJSON(github.event.commits.*.message), 'bump up version major')
+      - name: Minor release
+        id: minor
+        run: release-it minor --ci
+        if: steps.major.conclusion == 'skipped' && contains(toJSON(github.event.commits.*.message), 'bump up version minor')
+      - name: Patch release
+        run: release-it patch --ci
+        if: "!(steps.major.conclusion == 'success' || steps.minor.conclusion == 'success')"
