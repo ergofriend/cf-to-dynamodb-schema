@@ -1,7 +1,9 @@
+import {readFileSync, writeFileSync} from 'fs'
+
 import {Command} from 'commander'
 
-import {readFileSync, writeFileSync} from 'fs'
 import {createTable, parseTemplate} from './main'
+import {error, readFile} from './util'
 
 const program = new Command()
 const argument = 'cdk.out/*.template.json path'
@@ -22,7 +24,8 @@ program
     'output file path for table schema json'
   )
   .action((t, {output}) => {
-    const template = readFileSync(t, 'utf8')
+    const template = readFile(t)
+    if (!template) return
     const parsed = parseTemplate(template)
     if (output) {
       writeFileSync(output, parsed)
@@ -36,7 +39,8 @@ program
   .description('Run aws dynamodb create-table from cdk.out.file')
   .argument(argument)
   .action(t => {
-    const template = readFileSync(t, 'utf8')
+    const template = readFile(t)
+    if (!template) return
     const parsed = parseTemplate(template)
     createTable(parsed)
   })
