@@ -39,11 +39,19 @@ program
   .command('create-table')
   .description('Run aws dynamodb create-table from cdk.out.file')
   .argument(argument)
-  .action(t => {
+  .option(
+    '-e, --endpoint <string>',
+    'endpoint url of dynamodb. (e.g. http://localhost:8000)'
+  )
+  .option(
+    '-p, --profile <string>',
+    'profile name of aws configure. (e.g. localstack)'
+  )
+  .action((t, {profile, endpoint}) => {
     const template = readFile(t)
     if (!template) return
     const parsed = parseTemplate(template)
-    createTable(parsed)
+    createTable(parsed, profile, endpoint)
   })
 
 program.parse()
