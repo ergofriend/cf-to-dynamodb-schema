@@ -1,0 +1,49 @@
+{
+  "KeySchema": [
+    {
+      "AttributeName": "pk",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "sk",
+      "KeyType": "RANGE"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "pk",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "sk",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "dummy",
+      "AttributeType": "S"
+    }
+  ],
+  "LocalSecondaryIndexes": [
+    {
+      "IndexName": "dummyIndex",
+      "KeySchema": [
+        {
+          "AttributeName": "pk",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "dummy",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      }
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  },
+  "TableName": "sample-table"
+}
