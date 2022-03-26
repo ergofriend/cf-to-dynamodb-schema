@@ -1,10 +1,12 @@
 import {execSync} from 'child_process'
+import {randomUUID} from 'crypto'
+import {unlinkSync, writeFileSync} from 'fs'
 
 const parse = (data: string) => {
   try {
     return JSON.parse(data)
   } catch (error) {
-    throw Error('failed parse template')
+    throw Error(`failed parse template: ${JSON.stringify(error)}`)
   }
 }
 
@@ -23,5 +25,14 @@ export const parseTemplate = (data: string): string => {
 }
 
 export const createTable = (schema: string) => {
-  execSync(`aws dynamodb create-table --cli-input-json ${schema}`)
+  const tmpFilePath = `tmp.schema.${randomUUID()}.json`
+  writeFileSync(tmpFilePath, schema)
+  try {
+    execSync(
+      `aws dynamodb create-table --cli-input-json file://${tmpFilePath}`
+    )
+  } catch (error) {
+    console.log(`failed aws dynamodb create-table: ${JSON.stringify(error)}`)
+  }
+  unlinkSync(tmpFilePath)
 }

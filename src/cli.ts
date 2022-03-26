@@ -4,6 +4,7 @@ import {readFileSync, writeFileSync} from 'fs'
 import {createTable, parseTemplate} from './main'
 
 const program = new Command()
+const argument = 'cdk.out/*.template.json path'
 
 program
   .name('gen-dynamo-schema')
@@ -15,16 +16,16 @@ program
   .description(
     'Output json for exec aws dynamodb create-table from cdk.out.file'
   )
-  .requiredOption('-t --template <string>', 'template.json path')
+  .argument(argument)
   .option(
-    '-o --output <string>',
+    '-o, --output <string>',
     'output file path for table schema json'
   )
-  .action(async ({t, o}) => {
-    const template = await readFileSync(t, 'utf8')
+  .action((t, {output}) => {
+    const template = readFileSync(t, 'utf8')
     const parsed = parseTemplate(template)
-    if (o) {
-      writeFileSync(o, parsed)
+    if (output) {
+      writeFileSync(output, parsed)
     } else {
       console.log(parsed)
     }
@@ -33,9 +34,9 @@ program
 program
   .command('create-table')
   .description('Run aws dynamodb create-table from cdk.out.file')
-  .requiredOption('-t --template <string>', 'template.json data')
-  .action(async ({t}) => {
-    const template = await readFileSync(t, 'utf8')
+  .argument(argument)
+  .action(t => {
+    const template = readFileSync(t, 'utf8')
     const parsed = parseTemplate(template)
     createTable(parsed)
   })

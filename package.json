@@ -24,10 +24,9 @@
   "packageManager": "npm@8.4.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx ts-node scripts/build",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "build": "node scripts/build",
+    "test": "jest"
   },
-  "type": "module",
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",

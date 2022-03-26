@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { build } from 'estrella'
-import { Generator } from 'npm-dts'
+const {build} = require('estrella')
+const {Generator} = require('npm-dts')
 
 build({
   entry: ['src/main.ts', 'src/cli.ts'],
