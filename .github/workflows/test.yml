@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # prepare npm run
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: "npm"
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+      # run scripts
+      - name: run test
+        run: npm run test

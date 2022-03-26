@@ -4,8 +4,12 @@ on:
   push:
     branches:
       - master
+
 jobs:
-  release:
+  test:
+    uses: ErgoFriend/cdk-to-dynamodb-schema/.github/workflows/test.yml@main
+
+  build-and-release:
     runs-on: ubuntu-latest
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -14,21 +18,38 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v2
-      - name: Set releaser settings
+      - name: git config
         run: |
-          git config --global user.name release-bot
-          git config --global user.email release-bot@github.action
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Set .npmrc
         run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+      # prepare npm run
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: "npm"
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+      # run scripts
+      - name: run build
+        run: npm run build
+      # release-it
       - name: Major release
         id: major
-        run: release-it major --ci
+        run: npm run release major --ci
         if: contains(toJSON(github.event.commits.*.message), 'bump up version major')
       - name: Minor release
         id: minor
-        run: release-it minor --ci
+        run: npm run release minor --ci
         if: steps.major.conclusion == 'skipped' && contains(toJSON(github.event.commits.*.message), 'bump up version minor')
       - name: Patch release
-        run: release-it patch --ci
+        run: npm run release patch --ci
         if: "!(steps.major.conclusion == 'success' || steps.minor.conclusion == 'success')"
