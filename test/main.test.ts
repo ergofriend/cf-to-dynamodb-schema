@@ -5,5 +5,6 @@ import teatSchema from './schema/test.json'
 
 test('parseTemplate', () => {
   const template = JSON.stringify(testTemplate)
-  expect(parseTemplate(template)).toStrictEqual(teatSchema)
+  const result = JSON.parse(parseTemplate(template))
+  expect(result).toStrictEqual(teatSchema)
 })
