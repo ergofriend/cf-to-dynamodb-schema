@@ -25,9 +25,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
+        run: npm ci
       # run scripts
-      - name: prepare esbuild
-        run: npm config set ignore-scripts false
       - name: run test
         run: npm run test
