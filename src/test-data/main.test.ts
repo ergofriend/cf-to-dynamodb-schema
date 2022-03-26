@@ -1,4 +1,4 @@
-import {parseTemplate} from '../src/main'
+import {parseTemplate} from '../main'
 
 import testTemplate from './templates/test.template.json'
 import teatSchema from './schema/test.json'
