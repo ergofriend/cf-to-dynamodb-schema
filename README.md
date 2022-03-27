@@ -26,7 +26,7 @@ yarn add -D cf-to-dynamodb-schema
 cf-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p c2dexample
 ```
 
-### Get equal schema json to create-table json for aws dynamodb command
+### Get adapted .json file to create-table json for aws dynamodb command
 
 ```
 cf-to-dynamodb-schema parse-template <path>
