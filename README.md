@@ -2,7 +2,7 @@
 
 Defined Cloudformation DynamoDB Template convert to json to be adapted for `aws dynamodb create-table --cli-input-json`
 
-### When you have Cloudformation DynamoDB Template ?
+### Witch template you can use?
 
 - `aws-cdk`'s `cdk.out/<table-name>.template.json`
 - `.yaml` or `.yml` of Cloudformation Template
