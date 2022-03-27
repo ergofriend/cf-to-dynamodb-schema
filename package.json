@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/ErgoFriend/cf-to-dynamodb-schema/issues"
   },
-  "homepage": "https://github.com/ErgoFriend/cf-to-dynamodb-schema",
+  "homepage": "https://github.com/ErgoFriend/cf-to-dynamodb-schema#README",
   "repository": {
     "type": "git",
     "url": "https://github.com/ErgoFriend/cf-to-dynamodb-schema"
