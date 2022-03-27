@@ -1,9 +1,10 @@
-import {readFileSync, writeFileSync} from 'fs'
+#!/usr/bin/env node
+import {writeFileSync} from 'fs'
 
 import {Command} from 'commander'
 
 import {createTable, parseTemplate} from './main'
-import {error, readFile} from './util'
+import {readFile} from './util'
 
 const program = new Command()
 const argument = 'cdk.out/*.template.json path'

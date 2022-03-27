@@ -2,7 +2,7 @@
   "name": "cdk-to-dynamodb-schema",
   "description": "For DynamoDBLocal, Generate create-table json from aws cdk",
   "author": "ErgoFriend",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "bin": "./dist/cli.js",
