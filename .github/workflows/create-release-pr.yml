@@ -1,0 +1,26 @@
+name: Create a release pull-request
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release_pull_request:
+    runs-on: ubuntu-latest
+    name: release_pull_request
+    env:
+      GIT_PR_RELEASE_BRANCH_PRODUCTION: main
+      GIT_PR_RELEASE_BRANCH_STAGING: dev
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Ruby 3.1
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+      - name: Execute git-pr-release
+        env:
+          GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_TEMPLATE: ".github/pr-release-template.erb"
+        run: |
+          gem install git-pr-release -v "0.6.0"
+          git remote set-url origin "https://${GITHUB_ACTOR}:${GIT_PR_RELEASE_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git-pr-release || echo "Done."

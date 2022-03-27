@@ -10,7 +10,7 @@ npm i -D cdk-to-dynamodb-schema
 
 ## Description
 
-Helper for exec `aws dynamodb create-table` from cdk.out.template.file !
+Help for exec `aws dynamodb create-table` from cdk.out.template.file !
 
 From like this...
 
@@ -44,7 +44,8 @@ To like this !!!
 
 ## How to use
 
-`<path>` is `./cdk.out/<table-name>.template.json`
+- `<path>` is `./cdk.out/<table-name>.template.json`
+- For more details, See [/example](https://github.com/ErgoFriend/cdk-to-dynamodb-schema/tree/main/example) directory !
 
 ### Before use
 
@@ -54,11 +55,10 @@ Please export table template file to `cdk.out`
 cdk synth
 ```
 
-### Run create-table from `./cdk.out/<table-name>.template.json`
+### Run create-table from <path>
 
 ```
-cdk-to-dynamodb-schema create-table <path> -e http://localhost:8000
-cdk-to-dynamodb-schema create-table <path> -p localstack
+cdk-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p localstack
 ```
 
 ### Get equal schema json to create-table json for aws dynamodb command
