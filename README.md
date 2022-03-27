@@ -29,6 +29,7 @@ cf-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p c2dexample
 ### Get adapted .json file to create-table json for aws dynamodb command
 
 ```
+# Output command line
 cf-to-dynamodb-schema parse-template <path>
 # Export json
 cf-to-dynamodb-schema parse-template <path> -o generated.json
