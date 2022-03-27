@@ -9,7 +9,7 @@ jobs:
     name: release_pull_request
     env:
       GIT_PR_RELEASE_BRANCH_PRODUCTION: main
-      GIT_PR_RELEASE_BRANCH_STAGING: develop
+      GIT_PR_RELEASE_BRANCH_STAGING: dev
     steps:
       - uses: actions/checkout@v1
       - name: Set up Ruby 3.1
