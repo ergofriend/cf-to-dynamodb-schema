@@ -2,14 +2,10 @@ import {parseTemplate} from './main'
 
 import testTemplate from './test-data/templates/test.template.json'
 import teatSchema from './test-data/schema/test.json'
-import { readFile } from './util'
+import {readFile} from './util'
 
 describe('support formats', () => {
-  describe.each([
-    ['json'],
-    ['yaml'],
-    ['yml'],
-  ])(".%s", (format) => {
+  describe.each([['json'], ['yaml'], ['yml']])('.%s', format => {
     test('readFile', () => {
       const filename = `./src/test-data/templates/test.template.${format}`
       const data = readFile(filename)
