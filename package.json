@@ -36,7 +36,6 @@
     "@types/jest": "^27.4.1",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.23",
-    "cloudform-types": "^7.3.0",
     "commander": "^9.1.0",
     "esbuild": "^0.14.28",
     "esbuild-jest": "^0.5.0",
