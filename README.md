@@ -16,14 +16,13 @@ yarn add -D cf-to-dynamodb-schema
 
 ## How to use
 
-- Please export table template file to `cdk.out` by `cdk synth`.
 - `<path>` is `./cdk.out/<table-name>.template.json` or yaml file.
 - For more details, See [/example](https://github.com/ErgoFriend/cf-to-dynamodb-schema/tree/main/example) directory !
 
-### Run create-table from <path>
+### Run create-table from `<path>`
 
 ```
-cf-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p c2dexample
+cf-to-dynamodb-schema create-table <path> -e <dynamodb-endpoint> -p <aws-profile-name>
 ```
 
 ### Get adapted .json file to create-table json for aws dynamodb command
