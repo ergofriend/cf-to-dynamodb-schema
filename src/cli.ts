@@ -10,7 +10,7 @@ const program = new Command()
 const argument = 'cdk.out/*.template.json path'
 
 program
-  .name('cdk-to-dynamodb-schema')
+  .name('cf-to-dynamo-schema')
   .description('CLI to generate create-table json from aws cdk')
   .version('0.0.0')
 
