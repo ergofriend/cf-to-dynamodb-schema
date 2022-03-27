@@ -6,6 +6,7 @@ export const error = (text: string) => {
   console.error(`\x1b[31m${text}`)
   process.exit(1)
 }
+
 export const parse = (data: string) => {
   try {
     return JSON.parse(data)
