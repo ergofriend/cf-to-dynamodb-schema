@@ -24,7 +24,8 @@ export const readFile = (path: string) => {
     if (isJSON) return data
     if (isYAML) return JSON.stringify(yaml.load(data), null, 2)
     throw Error('not supported format.')
-  } catch {
-    error(`failed load ${path}`)
+  } catch (err) {
+    error(`failed load ${path}\n ${JSON.stringify(err)}`)
   }
+  return ''
 }
