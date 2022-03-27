@@ -5,7 +5,7 @@
   "scripts": {
     "synth": "cdk synth",
     "export": "cdk-to-dynamodb-schema parse-template ./cdk.out/SampleStack.template.json -o generated/sample.schema.json",
-    "init:db": "cdk-to-dynamodb-schema create-table ./cdk.out/SampleStack.template.json -e http://localhost:8000 -p localstack"
+    "init:db": "cdk-to-dynamodb-schema create-table ./cdk.out/SampleStack.template.json -e http://localhost:8000 -p c2dexample"
   },
   "author": "ErgoFriend",
   "license": "ISC",
