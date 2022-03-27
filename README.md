@@ -1,74 +1,35 @@
 # cf-to-dynamodb-schema
 
-This script usage is more adapted for `dynamodb-local` than for `localstack`
+Defined Cloudformation DynamoDB Template convert to json to be adapted for `aws dynamodb create-table --cli-input-json`
+
+### When you have Cloudformation DynamoDB Template ?
+
+- `aws-cdk`'s `cdk.out/<table-name>.template.json`
+- `.yaml` or `.yml` of Cloudformation Template
 
 ## Install
 
 ```
 npm i -D cf-to-dynamodb-schema
-```
-
-## Description
-
-Help for exec `aws dynamodb create-table` from cdk.out.template.file !
-
-From like this...
-
-```json
-{
-  "Resources": {
-    "<table-name>": {...},
-    "CDKMetadata": {...}
-  },
-  "Conditions": {
-    "CDKMetadataAvailable": {...}
-  },
-  "Parameters": {
-    "BootstrapVersion": {...}
-  },
-  "Rules": {...}
-}
-```
-
-To like this !!!
-
-```json
-{
-    "AttributeDefinitions": [...],
-    "KeySchema": [...],
-    "LocalSecondaryIndexes": [...],
-    "ProvisionedThroughput": {...},
-    "TableName": "..."
-}
+yarn add -D cf-to-dynamodb-schema
 ```
 
 ## How to use
 
-- `<path>` is `./cdk.out/<table-name>.template.json`
+- Please export table template file to `cdk.out` by `cdk synth`.
+- `<path>` is `./cdk.out/<table-name>.template.json` or yaml file.
 - For more details, See [/example](https://github.com/ErgoFriend/cf-to-dynamodb-schema/tree/main/example) directory !
-
-### Before use
-
-Please export table template file to `cdk.out`
-
-```
-cdk synth
-```
 
 ### Run create-table from <path>
 
 ```
-cf-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p localstack
+cf-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p c2dexample
 ```
 
 ### Get equal schema json to create-table json for aws dynamodb command
 
 ```
 cf-to-dynamodb-schema parse-template <path>
-```
-
-#### Export a json
-
-```
+# Export json
 cf-to-dynamodb-schema parse-template <path> -o generated.json
 ```
