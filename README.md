@@ -12,6 +12,8 @@ Defined Cloudformation DynamoDB Template convert to json to be adapted for `aws 
 ```
 npm i -D cf-to-dynamodb-schema
 yarn add -D cf-to-dynamodb-schema
+# or npx
+npx cf-to-dynamodb-schema --help
 ```
 
 ## How to use
