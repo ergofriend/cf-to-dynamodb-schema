@@ -8,6 +8,7 @@ build({
   minify: true,
   format: 'cjs',
   platform: 'node',
+  sourcemap: 'external'
 })
 
 // https://souporserious.com/bundling-typescript-with-esbuild-for-npm/
