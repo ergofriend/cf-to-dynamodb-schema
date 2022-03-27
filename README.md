@@ -1,74 +1,43 @@
-# cdk-to-dynamodb-schema
+# cf-to-dynamodb-schema
 
-This script usage is more adapted for `dynamodb-local` than for `localstack`
+Defined Cloudformation DynamoDB Template convert to json to be adapted for `aws dynamodb create-table --cli-input-json`
+
+### Which template you can use?
+
+- `aws-cdk`'s `cdk.out/<table-name>.template.json`
+- `.yaml` or `.yml` of Cloudformation Template
 
 ## Install
 
 ```
-npm i -D cdk-to-dynamodb-schema
-```
-
-## Description
-
-Help for exec `aws dynamodb create-table` from cdk.out.template.file !
-
-From like this...
-
-```json
-{
-  "Resources": {
-    "<table-name>": {...},
-    "CDKMetadata": {...}
-  },
-  "Conditions": {
-    "CDKMetadataAvailable": {...}
-  },
-  "Parameters": {
-    "BootstrapVersion": {...}
-  },
-  "Rules": {...}
-}
-```
-
-To like this !!!
-
-```json
-{
-    "AttributeDefinitions": [...],
-    "KeySchema": [...],
-    "LocalSecondaryIndexes": [...],
-    "ProvisionedThroughput": {...},
-    "TableName": "..."
-}
+npm i -D cf-to-dynamodb-schema
+yarn add -D cf-to-dynamodb-schema
+# or npx
+npx cf-to-dynamodb-schema --help
 ```
 
 ## How to use
 
-- `<path>` is `./cdk.out/<table-name>.template.json`
-- For more details, See [/example](https://github.com/ErgoFriend/cdk-to-dynamodb-schema/tree/main/example) directory !
+- `<path>` is `./cdk.out/<table-name>.template.json` or yaml file.
+- For more details, See [/example](https://github.com/ErgoFriend/cf-to-dynamodb-schema/tree/main/example) directory !
 
-### Before use
-
-Please export table template file to `cdk.out`
+### Run create-table from `<path>`
 
 ```
-cdk synth
+cf-to-dynamodb-schema create-table <path> -e <dynamodb-endpoint> -p <aws-profile-name>
 ```
 
-### Run create-table from <path>
+### Get adapted .json file to create-table json for aws dynamodb command
 
 ```
-cdk-to-dynamodb-schema create-table <path> -e http://localhost:8000 -p localstack
+# Output command line
+cf-to-dynamodb-schema parse-template <path>
+# Export json
+cf-to-dynamodb-schema parse-template <path> -o generated.json
 ```
 
-### Get equal schema json to create-table json for aws dynamodb command
+## Alternative ways
 
-```
-cdk-to-dynamodb-schema parse-template <path>
-```
-
-#### Export a json
-
-```
-cdk-to-dynamodb-schema parse-template <path> -o generated.json
-```
+- python cli [cloudformation-dynamodb-export · PyPI](https://pypi.org/project/cloudformation-dynamodb-export/)
+- shell script [CloudFormation の定義から DynamoDB Local にテーブルを作成する - miyasakura’s diary https://miyasakura.hatenablog.com/entry/2017/02/02/135518]
+- ruby script [CloudFormation の定義から DynamoDB local の Table を作成する](https://zenn.dev/k1ch/articles/eae8e9ae96040b)

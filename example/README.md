@@ -1,4 +1,4 @@
-# example of cdk-to-dynamodb-schema
+# example of cf-to-dynamodb-schema
 
 1. Create aws profile `aws configure --profile c2dexample`
 2. `docker compose up`
