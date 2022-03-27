@@ -2,19 +2,21 @@ import {execSync} from 'child_process'
 import {randomUUID} from 'crypto'
 import {unlinkSync, writeFileSync} from 'fs'
 
+import type Resource from 'cloudform-types/types/resource'
+
 import {error, parse} from './util'
 
 export const parseTemplate = (data: string): string => {
   const template = parse(data)
-  const resources = template.Resources
-  if (!resources) error('not found Resources')
+  const resources = template?.Resources
+  if (!resources) throw error('not found Resources')
   const resourcesValues = Object.values(resources)
-  const table: any = resourcesValues.find(
+  const table: Resource | undefined = resourcesValues.find(
     (v: any) => v.Type === 'AWS::DynamoDB::Table'
   )
-  if (!table) error('not found AWS::DynamoDB::Table')
+  if (!table) throw error('not found AWS::DynamoDB::Table')
   const properties = table.Properties
-  if (!properties) error('not found Properties')
+  if (!properties) throw error('not found Properties')
   return JSON.stringify(properties, null, 2)
 }
 
