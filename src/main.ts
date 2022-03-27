@@ -26,14 +26,10 @@ export const createTable = (
   const tmpFilePath = `tmp.schema.${randomUUID()}.json`
   writeFileSync(tmpFilePath, schema)
   try {
-    const target = profile
-      ? `--profile ${profile}`
-      : endpoint
-      ? `--endpoint-url ${endpoint}`
-      : ''
-    execSync(
-      `aws dynamodb create-table --cli-input-json file://${tmpFilePath} ${target}`
-    )
+    const base = `aws dynamodb create-table --cli-input-json file://${tmpFilePath}`
+    const e = endpoint ? `--endpoint-url ${endpoint}` : ''
+    const p = profile ? `--profile=${profile}` : ''
+    execSync(`${base} ${e} ${p}`)
   } catch {
     unlinkSync(tmpFilePath)
     error('failed aws dynamodb create-table')
