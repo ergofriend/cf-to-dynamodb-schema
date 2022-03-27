@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    uses: ErgoFriend/cf-to-dynamo-schema/.github/workflows/test.yml@main
+    uses: ErgoFriend/cf-to-dynamodb-schema/.github/workflows/test.yml@main
 
   build-and-release:
     runs-on: ubuntu-latest

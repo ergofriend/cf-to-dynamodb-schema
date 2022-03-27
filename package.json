@@ -1,5 +1,5 @@
 {
-  "name": "cf-to-dynamo-schema",
+  "name": "cf-to-dynamodb-schema",
   "description": "For DynamoDBLocal, Generate create-table json from aws cdk",
   "author": "ErgoFriend",
   "version": "0.1.7",
@@ -7,12 +7,12 @@
   "types": "./dist/main.d.ts",
   "bin": "./dist/cli.js",
   "bugs": {
-    "url": "https://github.com/ErgoFriend/cf-to-dynamo-schema/issues"
+    "url": "https://github.com/ErgoFriend/cf-to-dynamodb-schema/issues"
   },
-  "homepage": "https://github.com/ErgoFriend/cf-to-dynamo-schema",
+  "homepage": "https://github.com/ErgoFriend/cf-to-dynamodb-schema",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ErgoFriend/cf-to-dynamo-schema"
+    "url": "https://github.com/ErgoFriend/cf-to-dynamodb-schema"
   },
   "keywords": [
     "aws-cdk",
