@@ -1,6 +1,7 @@
 import {readFileSync} from 'fs'
 
 import type {Template} from 'cloudform-types'
+import yaml from 'js-yaml'
 
 export const error = (text: string) => {
   console.error(`\x1b[31m${text}`)
@@ -16,8 +17,13 @@ export const parse = (data: string) => {
 }
 
 export const readFile = (path: string) => {
+  const isJSON = path.endsWith('.json')
+  const isYAML = path.endsWith('.yaml') || path.endsWith('.yml')
   try {
-    return readFileSync(path, 'utf8')
+    const data = readFileSync(path, 'utf8')
+    if (isJSON) return data
+    if (isYAML) return JSON.stringify(yaml.load(data), null, 2)
+    throw Error('not supported format.')
   } catch {
     error(`failed load ${path}`)
   }
