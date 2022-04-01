@@ -36,7 +36,7 @@ cf-to-dynamodb-schema parse-template <path>
 cf-to-dynamodb-schema parse-template <path> -o generated.json
 ```
 
-## Alternative ways
+## Related
 
 - python cli [cloudformation-dynamodb-export · PyPI](https://pypi.org/project/cloudformation-dynamodb-export/)
 - shell script [CloudFormation の定義から DynamoDB Local にテーブルを作成する - miyasakura’s diary https://miyasakura.hatenablog.com/entry/2017/02/02/135518]
