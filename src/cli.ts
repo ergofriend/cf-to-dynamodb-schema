@@ -7,7 +7,7 @@ import {createTable, parseTemplate} from './main'
 import {readFile} from './util'
 
 const program = new Command()
-const argument = 'cdk.out/*.template.json path'
+const argument = 'template path'
 
 program
   .name('cf-to-dynamodb-schema')
