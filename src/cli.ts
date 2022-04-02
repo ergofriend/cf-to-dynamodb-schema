@@ -12,7 +12,6 @@ const argument = 'template path'
 program
   .name('cf-to-dynamodb-schema')
   .description('CLI to generate create-table json from aws cdk')
-  .version('0.0.0')
 
 program
   .command('parse-template')
